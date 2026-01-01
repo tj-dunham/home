@@ -2,7 +2,7 @@ set background=dark
 
 let g:colors_name="space"
 
-hi Comment ctermfg=lightgrey
+hi Comment ctermfg=8
 hi Constant cterm=bold ctermfg=208
 hi Special cterm=bold ctermfg=51
 hi Identifier ctermfg=51
