@@ -32,3 +32,6 @@ set shellcmdflag=-ic
 
 autocmd BufRead,BufNewFile *.note set syntax=python
 autocmd BufRead,BufNewFile *.py set syntax=python
+autocmd BufRead,BufNewFile *.F90 set syntax=fortran
+
+packadd termdebug

@@ -24,6 +24,8 @@ if [ -d ~/.bashrc.d ]; then
 fi
 unset rc
 
+udh="~/dev/self_drive/home_all"
+
 alias cll='clear;ls -l'
 alias clla='clear;ls -la'
 alias clc='clear'
@@ -38,6 +40,8 @@ alias evim='vim ~/.vimrc'
 # Working shortcuts
 alias dev='cd /home/tj/dev/'
 alias pract='cd /home/tj/dev/gnc/practice'
+alias ud='cd ~/dev/self_drive'
+alias kalman='cd ~/dev/kalman/adv_kalman_course/AKFSF-Simulation-CPP'
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

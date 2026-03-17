@@ -1,0 +1,327 @@
+\documentclass[11pt,xcolor={dvipsnames},usepdftitle=false]{beamer}
+\usepackage{presentation}
+\hypersetup{pdfpagemode=UseNone,hidelinks,pdfdisplaydoctitle=true,%
+%
+pdftitle={Self driving car engineering notebook for Udacity nanodegree}}
+
+% Enter path to PDF file with figures:
+%\newcommand{\pdf}{figures.pdf}
+\AtBeginSubsection[]
+{
+  \begin{frame}
+    \frametitle{Subsection}
+    \centering
+    \insertsubsection
+    %\usebeamerfont{section title}\insertsectionhead
+  \end{frame}
+}
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Section}
+    \centering
+    \usebeamerfont{section title}\insertsectionhead
+  \end{frame}
+}
+
+\begin{document}
+
+% Enter title:
+\title{Self Driving Car Notebook}
+
+\information%
+%
+% Enter URL to research paper (can be commented out):
+%[https://github.com/pmichaillat/latex-presentation]
+%
+{Author: TJ}
+%
+{UDACITY Nanodegree}
+
+%\frame{\titlepage}
+\maketitle
+\tableofcontents
+
+\section{Introduction}
+
+
+\begin{frame}
+  \frametitle{}
+
+
+\end{frame}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+% SECTION     MACHINE LEARNING
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+\section{Machine Learning}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+% SUBSECTION  MACHINE LEARNING WORKFLOW
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+\subsection{Machine Learning Workflow}
+
+% =================================================================== %
+% FRAME       ML METRICS
+% =================================================================== %
+\begin{frame}
+  \frametitle{ML Metrics 1/ - }
+  \begin{table}
+    \begin{tabular}{| c | c |}
+      \hline
+      \small {\textbf{Metric}} & {\textbf{Definition}}  \\\hline
+      \small True Positive (TP)   & Contains item and predicts item   \\\hline
+      \small True Negative (TN)   & Does not contain item and predicts no item   \\\hline
+      \small False Positive (FP)  & Does not contain item and predicts item   \\\hline
+      \small False Negative (FN)  & Contains item and predicts item   \\\hline
+    \end{tabular}
+  \end{table}
+
+\end{frame}
+
+% =================================================================== %
+% FRAME       ML METRICS - CLASSIFICATION
+% =================================================================== %
+\begin{frame}
+  \frametitle{ML Metrics 2/ - Classification}
+  \begin{table}
+    \begin{tabular}{| c | c | c |}
+      \hline
+      \small {\textbf{Metric}} & {\textbf{Equation}} & {\textbf{Definition}}  \\\hline
+      \small Precision   & $\frac{TP}{TP+FP} $ & Error rate of algorithm when it's predicting an item \\\hline
+      \small Recall   & $\frac{TP}{TP+FN} $ & Error rate when the picture is correct  \\\hline
+      \small Accuracy   & $\frac{TP+TN}{TP+FN+FP+TN} $ & Total error rate\\\hline
+    \end{tabular}
+  \end{table}
+
+\end{frame}
+
+% =================================================================== %
+% FRAME       ML METRICS - IOU
+% =================================================================== %
+\begin{frame}
+  \frametitle{ML Metrics 3/ - Intersection over Union (IOU)}
+
+  \begin{itemize}
+    \small\item Create bounding boxes for prediction and observation (or truth)
+    \small\item Ratio of intersection of bounding boxes to union of bounding boxes
+    \small\item 50\% ratio considered threshold for true positive
+  \end{itemize}
+
+\end{frame}
+
+% TODO : Summarize example
+
+% =================================================================== %
+% FRAME       Data Acquisition and Visualization
+% =================================================================== %
+\begin{frame}
+  \frametitle{Data Acquisition and Visualization}
+
+  \begin{itemize}
+    \small\item Most time spent at this stage
+    \small\item $[$TERM$]$ Domain Gap - an alg trained on one specific dataset may not perform well on another
+  \end{itemize}
+
+\end{frame}
+
+% =================================================================== %
+% FRAME       Exploratory Data Analysis
+% =================================================================== %
+\begin{frame}
+  \frametitle{Exploratory Data Analysis (EDA)}
+
+  \begin{itemize}
+    \small\item Should spend a significant amount of time visually examining dataset 
+    \small\item $[$TERM$]$ Domain Shift - Conditions that affect ML alg ability to analyze
+      \begin{itemize}
+        \small\item Examples: weather, light, sensor change/processing, environment
+      \end{itemize}
+    \small\item EDA can help tune data analysis for domain shift
+    \small\item Vision problem can require looking at 1000s of images 
+  \end{itemize}
+
+\end{frame}
+
+% =================================================================== %
+% FRAME       Cross Validation
+% =================================================================== %
+\begin{frame}
+  \frametitle{Cross Validation}
+
+  \begin{itemize}
+    \small\item Ensures alg will perform well in any environment
+    \small\item Evaluates the generalization ability of the model
+    \small\item Concepts
+      \begin{itemize}
+        \footnotesize\item Overfitting
+          \begin{itemize}
+            \footnotesize\item Model does not generalize
+            \footnotesize\item Differentiate training vs test datasets
+          \end{itemize}
+      \end{itemize}
+      \begin{itemize}
+        \footnotesize\item Bias-variance tradeoff
+          \begin{itemize}
+            \footnotesize\item Hard to create a balanced model
+            \footnotesize\item $TestError = Var + Bias + \epsilon$
+            \footnotesize\item Variance - sensitivity to training data, bias - quality of fit, test error - error rate on test datasit 
+            \footnotesize\item Reducing variance will increase bias
+          \end{itemize}
+      \end{itemize}
+      \begin{itemize}
+        \footnotesize\item Cross Validation
+          \begin{itemize}
+            \footnotesize\item Evaluates how well a model generalizes
+            \footnotesize\item Be careful of data leakage
+          \end{itemize}
+      \end{itemize}
+  \end{itemize}
+
+\end{frame}
+
+% =================================================================== %
+% FRAME       TF Record
+% =================================================================== %
+\begin{frame}
+  \frametitle{TF Record}
+
+  \begin{itemize}
+    \small\item Tensorflow custom data format
+    \small\item Records in waymo are tf record
+    \small\item Use protofile to designate data fields - protocol files
+    \small\item Use TF function to create your own custom tf records
+  \end{itemize}
+
+\end{frame}
+
+% =================================================================== %
+% FRAME       Exercise - 003 - TFRecord;
+% =================================================================== %
+\begin{frame}
+  \frametitle{Exercise - 003 - TFRecord
+
+  \begin{itemize}
+    \small\item 
+  \end{itemize}
+
+\end{frame}
+
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+% SECTION     EXTRAS
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %
+\section{Extras}
+\subsection{Modeling}
+
+% =================================================================== %
+% FRAME       VEHICLE MODELING
+% =================================================================== %
+\begin{frame}
+  \frametitle{Vehicle modeling}
+  \begin{itemize}
+      \small\item Kinetic model
+          \begin{itemize}
+              \small\item Simplification of dynamic model
+              \small\item More tractible
+          \end{itemize}
+      \small\item Dynamic model
+          \begin{itemize}
+              \small\item Aim to encompass dynamics of model
+              \small\item More robust
+          \end{itemize}
+  \end{itemize}
+
+\end{frame}
+
+% =================================================================== %
+% FRAME       STATE
+% =================================================================== %
+\begin{frame}
+  \frametitle{State}
+  \begin{itemize}
+      \small\item Position, orientation, velocity
+      \small\item In this example
+        \begin{itemize}
+          \small\item $[$x,y,psi,v$]$
+        \end{itemize}
+  \end{itemize}
+
+\end{frame}
+
+% =================================================================== %
+% FRAME       BUILDING A KINEMATIC MODEL
+% =================================================================== %
+\begin{frame}
+  \frametitle{Building a Kinematic Model}
+  \begin{itemize}
+    \small\item Actuators - Control inputs 
+      \begin{itemize}
+        \small\item eg steering wheel, pedals
+        \small\item in example, these are delta for turning and a for acceleration
+      \end{itemize}
+    %\small\item Formulas
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Following a Trajectory}
+  \begin{itemize}
+    \small\item With self-driving car
+      \begin{itemize}
+        \small\item Perception - localization - path planning - control
+        \small\item Usually use third degree polynomial for planning
+        \small\item Localization compares model to map with SDC
+        \small\item Path planning uses map, veh loc, environmental model
+      \end{itemize}
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Error 1/}
+  \begin{itemize}
+    \small\item Must measured and expected values
+    \small\item State becomes $[$x,y,psi,v,cte,epsi$]$
+    \small\item CTE - Crosstrack error
+      \begin{itemize}
+        \small\item Low complexity heuristic
+        \small\item Difference between intended route and current track
+        \small\item For next cte $$cte_{t+1} = f(x_t) - y_t +  (v_t * sin(e\psi_t)*dt) $$
+        \small\item Where $cte_{t+1} = f(x_t) - y_t$ is curr cte and rest is error due to veh mvmt
+      \end{itemize}
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Error 2/}
+  \begin{itemize}
+    \small\item Orientation error
+      \begin{itemize}
+        \small\item Difference between desired and curr orientation
+        \small\item $$e\psi_{t+1} = e\psi_t + \frac{v_t}{L_f}*\delta_t*dt$$
+        \small\item Becomes
+        \small\item $$e\psi_{t+1} = e\psi_t - \psi des_t + (\frac{v_t}{L_f}*\delta_t*dt)$$
+        \small\item Where $e\psi_{t+1} = e\psi_t - \psi des_t$ is the curr orient error and rest is new error caused by movement
+      \end{itemize}
+  \end{itemize}
+
+\end{frame}
+
+
+%\begin{frame}
+%\frametitle{Generic slide}
+%\begin{itemize}
+%\item Consectetur adipiscing elit
+%\item Sed do eiusmod tempor incididunt
+%\item Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
+%\item Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur
+%\item Ut labore et dolore magna aliqua
+%\end{itemize}
+%\end{frame}
+
+
+\end{document}
