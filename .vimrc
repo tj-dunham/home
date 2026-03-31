@@ -5,6 +5,8 @@ filetype indent on
 syntax on
 set number
 set shiftwidth=2
+set softtabstop=2
+set tabstop=2
 set expandtab
 set nowrap
 set incsearch
@@ -21,7 +23,6 @@ set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 
 set autoindent
 set smartindent
-set tabstop=2
 
 filetype plugin indent on
 

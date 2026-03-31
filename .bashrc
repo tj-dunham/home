@@ -37,6 +37,8 @@ alias lla='ls -la'
 alias ebash='vim ~/.bashrc'
 alias evim='vim ~/.vimrc'
 
+alias notedir='cd ~/notebooks'
+
 # Working shortcuts
 alias dev='cd /home/tj/dev/'
 alias pract='cd /home/tj/dev/gnc/practice'
